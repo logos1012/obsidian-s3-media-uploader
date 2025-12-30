@@ -118,6 +118,31 @@ var S3Uploader = class {
     }
   }
   /**
+   * Wait for WebP conversion to complete
+   * Polls the WebP URL until it's available or timeout
+   */
+  async waitForWebP(webpUrl, maxAttempts = 30, intervalMs = 1e3) {
+    for (let i = 0; i < maxAttempts; i++) {
+      try {
+        const response = await fetch(webpUrl, { method: "HEAD" });
+        if (response.ok) {
+          return true;
+        }
+      } catch (error) {
+      }
+      if (i < maxAttempts - 1) {
+        await new Promise((resolve) => setTimeout(resolve, intervalMs));
+      }
+    }
+    return false;
+  }
+  /**
+   * Convert image URL to WebP URL
+   */
+  convertToWebpUrl(url) {
+    return url.replace(/\.(jpg|jpeg|png|gif|bmp)$/i, ".webp");
+  }
+  /**
    * Complete upload workflow: request URL, upload file, notify completion
    */
   async uploadFile(file, onProgress) {
@@ -125,11 +150,20 @@ var S3Uploader = class {
     const presignData = await this.requestPresignedUrl(file);
     onProgress("Uploading to S3...", 20);
     await this.uploadToS3(file, presignData.upload_url, presignData, (uploadProgress) => {
-      const overallProgress = 20 + uploadProgress * 0.7;
+      const overallProgress = 20 + uploadProgress * 0.6;
       onProgress("Uploading to S3...", overallProgress);
     });
-    onProgress("Processing...", 90);
+    onProgress("Processing...", 80);
     await this.notifyUploadComplete(presignData);
+    const isImage = file.type.startsWith("image/");
+    if (isImage) {
+      onProgress("Converting to WebP...", 85);
+      const webpUrl = this.convertToWebpUrl(presignData.file_url);
+      const webpReady = await this.waitForWebP(webpUrl, 30, 1e3);
+      if (webpReady) {
+        presignData.file_url = webpUrl;
+      }
+    }
     onProgress("Complete", 100);
     return presignData;
   }
