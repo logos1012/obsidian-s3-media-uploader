@@ -1,0 +1,186 @@
+/* S3 Media Uploader Plugin Styles */
+
+/* Modal Styles */
+.s3-uploader-modal {
+  padding: 20px;
+  min-width: 500px;
+}
+
+.s3-uploader-modal h2 {
+  margin-bottom: 20px;
+  color: var(--text-normal);
+}
+
+/* Dropzone Styles */
+.s3-dropzone {
+  border: 2px dashed var(--background-modifier-border);
+  border-radius: 8px;
+  padding: 60px 40px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: var(--background-secondary);
+}
+
+.s3-dropzone:hover {
+  border-color: var(--interactive-accent);
+  background: var(--background-secondary-alt);
+}
+
+.s3-dropzone.dragover {
+  border-color: var(--interactive-accent);
+  background: var(--background-modifier-hover);
+}
+
+.s3-dropzone input[type="file"] {
+  display: none;
+}
+
+.s3-dropzone-text {
+  color: var(--text-muted);
+  font-size: 16px;
+  margin-bottom: 12px;
+}
+
+.s3-dropzone-hint {
+  color: var(--text-faint);
+  font-size: 14px;
+}
+
+/* File List Styles */
+.s3-file-list {
+  margin: 20px 0;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.s3-file-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  margin-bottom: 8px;
+  border-radius: 4px;
+  background: var(--background-secondary);
+}
+
+.s3-file-item.uploading {
+  background: var(--background-modifier-hover);
+}
+
+.s3-file-item.completed {
+  background: var(--background-modifier-success);
+}
+
+.s3-file-item.failed {
+  background: var(--background-modifier-error);
+}
+
+.s3-file-name {
+  flex: 1;
+  color: var(--text-normal);
+  font-size: 14px;
+}
+
+.s3-file-size {
+  color: var(--text-muted);
+  font-size: 12px;
+  margin-left: 12px;
+}
+
+.s3-file-remove {
+  margin-left: 12px;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 1;
+}
+
+.s3-file-remove:hover {
+  color: var(--text-error);
+}
+
+/* Progress Bar Styles */
+.s3-progress-container {
+  margin: 20px 0;
+  display: none;
+}
+
+.s3-progress-container.active {
+  display: block;
+}
+
+.s3-progress-bar {
+  width: 100%;
+  height: 24px;
+  background: var(--background-secondary);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.s3-progress-fill {
+  height: 100%;
+  background: var(--interactive-accent);
+  transition: width 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.s3-progress-text {
+  font-size: 14px;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.s3-progress-file {
+  font-size: 12px;
+  color: var(--text-faint);
+  text-align: center;
+  margin-top: 4px;
+}
+
+/* Button Styles */
+.s3-button-group {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.s3-button {
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  border: none;
+}
+
+.s3-button-primary {
+  background: var(--interactive-accent);
+  color: white;
+}
+
+.s3-button-primary:hover {
+  background: var(--interactive-accent-hover);
+}
+
+.s3-button-secondary {
+  background: var(--background-secondary);
+  color: var(--text-normal);
+}
+
+.s3-button-secondary:hover {
+  background: var(--background-secondary-alt);
+}
+
+.s3-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

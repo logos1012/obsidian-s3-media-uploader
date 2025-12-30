@@ -1,0 +1,10 @@
+{
+  "id": "s3-media-uploader",
+  "name": "S3 Media Uploader",
+  "version": "1.0.0",
+  "minAppVersion": "0.15.0",
+  "description": "Upload images and videos to AWS S3 and automatically insert HTML embed code",
+  "author": "Jake",
+  "authorUrl": "",
+  "isDesktopOnly": true
+}

@@ -1,0 +1,21 @@
+# Dependencies
+node_modules/
+
+# Build artifacts
+*.js.map
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Nested directory (build artifact)
+obsidian-s3-uploader/
+
+# Local environment
+.env
+.env.local
+YOUR_SETTINGS.md
